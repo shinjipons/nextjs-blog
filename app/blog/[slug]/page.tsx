@@ -3,6 +3,9 @@ import { fullBlog } from "@/lib/interface";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
+// revalidate every so often so that Next.js does not use stale data from Sanity
+export const revalidate = 30 // Revalidate at most every 30 seconds
+
 async function getData(slug: string) {
     const query = `
     *[_type == 'blog' && slug.current == '${slug}'] {

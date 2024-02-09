@@ -5,6 +5,9 @@ import { client, urlFor } from "@/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
 
+// revalidate every so often so that Next.js does not use stale data from Sanity
+export const revalidate = 30 // Revalidate at most every 30 seconds
+
 async function getData() {
   const query = `
   * [_type == 'blog'] | order(_createdAt desc) {
